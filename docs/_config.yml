@@ -1,0 +1,13 @@
+title: SADYCOS
+description: Documentation for the SADYCOS project
+theme: just-the-docs
+
+url: https://SADYCOS.github.io/sadycos
+
+aux_links:
+  Github Repository: https://github.com/SADYCOS/sadycos/
+
+color_scheme: dark
+
+back_to_top: true
+back_to_top_text: "↑ Back to top ↑"
