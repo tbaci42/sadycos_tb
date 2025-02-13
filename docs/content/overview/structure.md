@@ -1,7 +1,8 @@
 ---
 title: Structure
 layout: page
-parent: Concepts
+parent: Overview
+nav_order: 1
 ---
 
 # Structure

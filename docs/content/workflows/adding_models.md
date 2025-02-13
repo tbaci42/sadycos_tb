@@ -1,6 +1,6 @@
 ---
 title: Adding New Models
 layout: page
-parent: Workflows
+parent: Workflow
 nav_order: 3
 ---

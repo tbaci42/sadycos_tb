@@ -1,5 +1,6 @@
 ---
 title: Notation
 layout: page
-parent: Concepts
+parent: Overview
+nav_order: 3
 ---

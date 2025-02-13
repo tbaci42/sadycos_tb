@@ -1,6 +1,6 @@
 ---
 title: Simulation Setup
 layout: page
-parent: Workflows
-nav_order: 1
+parent: Overview
+nav_order: 2
 ---
