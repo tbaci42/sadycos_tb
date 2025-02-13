@@ -2,7 +2,7 @@
 title: Running Simulations
 layout: page
 parent: Workflow
-nav_order: 2
+nav_order: 1
 ---
 
 # Running Simulations
