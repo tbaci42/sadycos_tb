@@ -10,7 +10,7 @@ It features a structure that allows for a highly customizable creation and execu
 A constantly expanding library of models is provided to enable the user to quickly set up new simulations.
 By implementing custom models and controllers, the user is in charge of making an own trade-off between simulation speed and level of detail.
 
-## Advantages of SADYCOS:
+## Advantages of SADYCOS
 ### Fully Customizable
 The Simulink model only provides a general structure for the simulation with subsystems for the environment, actuators, sensors, plant and algorithms.
 The user is responsible for implementing the entire functionality of these subsystems. 
