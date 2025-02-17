@@ -11,7 +11,7 @@ The [main repository](https://github.com/SADYCOS/sadycos) contains two folders t
 ## Core
 The `Core` folder makes up the main functionality of the simulator.
 To simplify updates to newer versions of the simulator, the contents of `Core` are contained within a separate repository [SADYCOS Core repository](https://github.com/SADYCOS/sadycos_core) with the folder `Core` being a git submodule.
-The user should not need to edit any files within this folder but instead implement everything in the [UserFiles folder](#userfiles).
+The user should not need to edit any files within this folder but instead implement everything in the [`UserFiles`](#userfiles).
 The SADYCOS Core repository is itself a MATLAB project (with the corresponding `SADYCOS_CORE.prj` file) which is included as a reference within the simulator's main MATLAB project.
 The following section describe the remaining contents of the `Core` folder.
 ### `external_namespaces`
@@ -37,8 +37,8 @@ This is shown in the following picture.
 
 #### Configuring the Simulation
 To reiterate, this Simulink model only provides the general structure of the simulation but does not implement any specific functionality.
-The subsystems contain MATLAB function blocks which in turn call functions defined by files in the `UserFiles` folder which are meant to be edited by the user to define the behavior of the simulation.
-For this, the user can utilize the models provided in the `ModelsLibrary` folder or implement custom models in the `UserFiles` folder.
+The subsystems contain MATLAB function blocks which in turn call functions defined by files in the [`UserFiles`](#userfiles) folder which are meant to be edited by the user to define the behavior of the simulation.
+For this, the user can utilize the models provided in the [`ModelsLibrary`](#modelslibrary) folder or implement custom models in the [`UserFiles`](#userfiles) folder.
 
 While the naming of the subsystems is meant to provide some guidance on what kind of functionality should be implemented in each, the user is free to decide where to implement what.
 The only restrictions are the inputs and ouputs of the subsystems.
@@ -71,7 +71,7 @@ If the systems are configured to be simulated continuously, the Simulink engine 
 
 The states update of continuous systems is described by differential equations with respect to time, while the states update of discrete systems is described by difference equations.
 Therefore, the states update that the Simulink engine performs must be switched between using an integrator for continuous subsystems and a delay for discrete subsystems.
-This is done automatically depending on the user's choice by using the utility Simulink model `states_update.slx` which is included in the `Utilities` folder.
+This is done automatically depending on the user's choice by using the utility Simulink model `states_update.slx` which is included in the [`Utilities`](#utilities) folder.
 
 #### Delays
 The user can configure delays for the outputs of the subsystems `Sensors`, `Actuators`, and `GNC Algorithms` to simulate the time it takes for the signals to be processed and passed onto the next subsystem.
@@ -86,7 +86,7 @@ It forces its subclasses to implement the method `execute` which is meant to be 
 Furthermore, the constructor of a model's class is meant to prepare the model's part of the parameter structure that is used in the call to the model's `execute` method.  
 
 ## UserFiles
-As mentioned before, the simulation is structured in a way that should allow the user to avoid editing the contents of the `Core` folder including the Simulink model file.
+As mentioned before, the simulation is structured in a way that should allow the user to avoid editing the contents of the [`Core`](#core) folder including the Simulink model file.
 Instead, the user should implement everything specific to a certain simulation in the `UserFiles` folder.
 This folder is made up of the following subfolders: 
 - Configurations,
@@ -94,7 +94,7 @@ This folder is made up of the following subfolders:
 
 ### Configurations
 The `Configurations` folder is meant to contain all files needed to set up and perform a simulation.
-These files are meant to be grouped within classes that each describe a single simulation or set of similar simulations and inherit from the abstract superclass `SimulationConfiguration` provided in the `Utilities` folder of `Core`.
+These files are meant to be grouped within classes that each describe a single simulation or set of similar simulations and inherit from the abstract superclass `SimulationConfiguration` provided in the [`Utilities`](#utilities) folder of [`Core`](#core).
 This class forces its subclasses to implement two sets of static methods.
 The methods
 - `configureParameters` and 
@@ -123,5 +123,5 @@ The user also benefits from using classes when implementing multiple different s
 Initially, there is a namespace `ExampleMission` in the `Configurations` folder which contains a class `DefaultConfiguration` that serves as an example for how to structure a configuration class.
 
 ### Models
-While the `Core` contains a library of models that the user can utilize within the simulation, this folder can be used by the user to implement custom models that are specific to the user's simulation.
-Like the models in the `ModelsLibrary`, these models should be subclasses of the abstract superclass `ModelBase` provided in the `Utilities` folder of `Core`.
+While the [`Core`](#core) contains a library of models that the user can utilize within the simulation, this folder can be used by the user to implement custom models that are specific to the user's simulation.
+Like the models in the `ModelsLibrary`, these models should be subclasses of the abstract superclass `ModelBase` provided in the [`Utilities`](#utilities) folder of [`Core`](#core).
