@@ -6,8 +6,14 @@ nav_order: 1
 ---
 
 # Structure
+{: .no_toc }
 This page is meant to provide an overview of the contents of SADYCOS.
 The [main repository](https://github.com/SADYCOS/sadycos) contains two folders that are of interest to the user: `Core` and `UserFiles`.
+
+## Page Contents
+{: .no_toc .text-delta }
+- TOC
+{:toc}
 
 ## Core
 The `Core` folder makes up the main functionality of the simulator.

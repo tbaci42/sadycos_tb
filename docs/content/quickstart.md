@@ -5,7 +5,13 @@ nav_order: 2
 ---
 
 # Quickstart
+{: .no_toc }
 This guide will help you set up SADYCOS on your machine, run a simple simulation and inspect the simulation results.
+
+## Page Contents
+{: .no_toc .text-delta }
+- TOC
+{:toc}
 
 ## Prerequisites
 - Git
