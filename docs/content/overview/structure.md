@@ -6,11 +6,12 @@ nav_order: 1
 ---
 
 # Structure
+This page is meant to provide an overview of the contents of SADYCOS.
 The [main repository](https://github.com/SADYCOS/sadycos) contains two folders that are of interest to the user: `Core` and `UserFiles`.
 
 ## Core
 The `Core` folder makes up the main functionality of the simulator.
-To simplify updates to newer versions of the simulator, the contents of `Core` are contained within a separate repository [SADYCOS Core repository](https://github.com/SADYCOS/sadycos_core) with the folder `Core` being a git submodule.
+To simplify updates to newer versions of the simulator, the contents of `Core` are contained within a separate [SADYCOS Core repository](https://github.com/SADYCOS/sadycos_core) with the folder `Core` being a git submodule.
 The user should not need to edit any files within this folder but instead implement everything in the [`UserFiles`](#userfiles).
 The SADYCOS Core repository is itself a MATLAB project (with the corresponding `SADYCOS_CORE.prj` file) which is included as a reference within the simulator's main MATLAB project.
 The following section describe the remaining contents of the `Core` folder.
@@ -26,18 +27,21 @@ Its general structure is shown below.
 <center>
     <img src="simulink_root.png" alt="Simulink Model" width="80%"/>
 </center>
+
 It is kept as generic as possible to allow for an easy customization of the simulation for individual use cases without the need to edit the Simulink file itself.
 On the top level, there are the three subsystems `Environment`, `Satellite` and `GNC Algorithms` that implement the actual simulation and are connected to form two feedback loops: the environment loop and the control loop.
 In addition to that, there is as another subsystem called `Periphery` that contains functionality for logging, visualization, and other auxiliary tasks.
-In contrast to the others, the `Satellite` subsystem is actually itself just a container for three further subsystems: `Plant`, `Sensors`, and `Actuators`.
+
+In contrast to the others, the `Satellite` subsystem is itself just a container for three further subsystems: `Plant`, `Sensors`, and `Actuators`.
 This is shown in the following picture.
 <center>
     <img src="simulink_satellite.png" alt="Satellite Subsystem" width="100%"/>
 </center>
 
-#### Configuring the Simulation
-To reiterate, this Simulink model only provides the general structure of the simulation but does not implement any specific functionality.
-The subsystems contain MATLAB function blocks which in turn call functions defined by files in the [`UserFiles`](#userfiles) folder which are meant to be edited by the user to define the behavior of the simulation.
+#### Configuring the Simulink Model
+This Simulink model only provides the general structure of the simulation but does not implement any specific functionality.
+The five main subsystems (`Environment`, `Plant`, `Sensors`, `Actuators`, `GNC Algorithms`) contain MATLAB function blocks which in turn call functions defined by files in the [`UserFiles`](#userfiles) folder.
+These are meant to be edited by the user to define the behavior of the simulation.
 For this, the user can utilize the models provided in the [`ModelsLibrary`](#modelslibrary) folder or implement custom models in the [`UserFiles`](#userfiles) folder.
 
 While the naming of the subsystems is meant to provide some guidance on what kind of functionality should be implemented in each, the user is free to decide where to implement what.
@@ -50,9 +54,9 @@ Besides through these functions, the Simulink model is configured through a para
 The individual steps to configure the simulation are explained in the [Simulation Setup]({% link content/overview/setup/index.md %}) section.
 
 #### Dynamic Systems
-Each of the five main subsystems (`Environment`, `Plant`, `Sensors`, `Actuators`, `GNC Algorithms`) can be configured by the user to represent a dynamic system with states of their own.
+Each of the five main subsystems can be configured by the user to represent a dynamic system with states of their own.
 For that, each of these subsystems contains a MATLAB function block which is meant to implement both the differential/difference equations of the states update and the algebraic output equation of the system (for background information see [Modelling of Dynamic Systems]({% link content/overview/background/dynamic_systems.md %})).
-This way, the user only needs to edit a single Matlab function for each of these subsystems to define the behavior of the system.
+This way, the user only needs to edit a single MATLAB function for each of these subsystems to define the behavior of the system.
 
 The exception to this is the `Plant` subsystem which does not only contain one MATLAB function block but two for separating the proper and improper outputs of the system.
 This prevents Simulink from falsely detecting algebraic loops in the model (as explained in [Modelling of Dynamic Systems]({% link content/overview/background/dynamic_systems.md %})) because only the proper output `PlantOutputs` is used in the environment loop.
@@ -77,13 +81,17 @@ This is done automatically depending on the user's choice by using the utility S
 The user can configure delays for the outputs of the subsystems `Sensors`, `Actuators`, and `GNC Algorithms` to simulate the time it takes for the signals to be processed and passed onto the next subsystem.
 As was mentioned in [Dynamic Systems](#dynamic-systems), the user is currently forced to configure at least one delay to prevent algebraic loops within the control loop.
 
+#### Logging
+
 ### `ModelsLibrary`
 This is a collection of common models that the user can utilize within the simulation.
-This includes models of the Earth orbit environment (geopotential, atmosphere, magnetic field, ...), models of common equations of motion, models of common sensors, actuators, and control algorithms.
+It includes models of the Earth orbit environment (geopotential, atmosphere, magnetic field, ...), models of common equations of motion, models of common sensors, actuators, and control algorithms.
 
 All models are subclasses to the abstract superclass `ModelBase` which is provided in the `Utilities` folder.
 It forces its subclasses to implement the method `execute` which is meant to be called within the MATLAB function blocks of the simulation's main Simulink model.
 Furthermore, the constructor of a model's class is meant to prepare the model's part of the parameter structure that is used in the call to the model's `execute` method.  
+
+The page [Model Usage]({% link content/overview/setup/models.md %}) explains dealing with models in more detail.
 
 ## UserFiles
 As mentioned before, the simulation is structured in a way that should allow the user to avoid editing the contents of the [`Core`](#core) folder including the Simulink model file.
@@ -102,6 +110,7 @@ The methods
 
 are used to setup the parameter structure and the bus objects of the Simulink model, respectively.
 The parameter structure output by the first method contains a section with general options for the simulations (e.g. the simulation time, the sample time of discrete systems, the output delay of some systems, ...) and sections for the models used within the five main subsystems of the Simulink model.
+
 Preparing the bus objects with the second method is necessary because the functions called within the MATLAB function blocks of the Simulink model generally output a structure.
 Simulink cannot automatically infer the bus objects of the signals from these structures and thus the user has to provide them manually.
 
