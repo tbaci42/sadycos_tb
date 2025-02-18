@@ -13,3 +13,5 @@ color_scheme: dark
 back_to_top: true
 back_to_top_text: "↑ Back to top ↑"
 math: katex
+mermaid:
+  version: "9.1.3"
