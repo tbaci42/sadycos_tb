@@ -82,6 +82,11 @@ The user can configure delays for the outputs of the subsystems `Sensors`, `Actu
 As was mentioned in [Dynamic Systems](#dynamic-systems), the user is currently forced to configure at least one delay to prevent algebraic loops within the control loop.
 
 #### Logging
+Each MATLAB function block within the five main subsystems has an output port for logging purposes.
+It is fed into a `goto` block which directs the signals into the `Periphery` subsystem on the top level.
+Here, these signals are marked to be logged.
+Apart from them, nothing else is logged by the model.
+So, the user is fully responsible for filling the log signals within the functions called inside the MATLAB function blocks. 
 
 ### `ModelsLibrary`
 This is a collection of common models that the user can utilize within the simulation.
