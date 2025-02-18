@@ -3,6 +3,7 @@ description: Documentation for the SADYCOS project
 theme: just-the-docs
 
 url: https://sadycos.github.io/sadycos
+logo: "assets/images/logo.png"
 
 aux_links:
   Github Repository: https://github.com/SADYCOS/sadycos/
