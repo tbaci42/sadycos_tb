@@ -12,7 +12,8 @@ This page is intended to give some background knowledge of how dynamic systems a
 The following terms are used throughout this page and are briefly explained here:
 
 ### Simulation
-- determination of how a system's behavior over time = solution of set of differential/difference equations
+- determination of how a system behaves over time
+- mathematically, this results in the solution of a set of differential/difference equations
 
 ### Static System
 - system output $$y$$ depends only on the current input $$u$$
