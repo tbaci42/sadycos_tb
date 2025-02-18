@@ -24,6 +24,16 @@ The following section describe the remaining contents of the `Core` folder.
 ### `external_namespaces`
 This folder contains namespaces that are used throughout the simulator, such as the [Space Math Utilities](https://github.com/ifrunistuttgart/space-math-utilities) with common mathematical functions for space applications.
 
+### `ModelsLibrary`
+This is a collection of common models that the user can utilize within the simulation.
+It includes models of the Earth orbit environment (geopotential, atmosphere, magnetic field, ...), models of common equations of motion, models of common sensors, actuators, and control algorithms.
+
+All models are subclasses to the abstract superclass `ModelBase` which is provided in the `Utilities` folder.
+It forces its subclasses to implement the method `execute` which is meant to be called within the MATLAB function blocks of the simulation's main Simulink model.
+Furthermore, the constructor of a model's class is meant to prepare the model's part of the parameter structure that is used in the call to the model's `execute` method.  
+
+The page [Model Usage]({% link content/overview/setup/models.md %}) explains dealing with models in more detail.
+
 ### `Utilities`
 This folder contains a collection of utility functions, classes, and Simulink models that are used throughout the simulator.
 
@@ -94,27 +104,19 @@ Here, these signals are marked to be logged.
 Apart from them, nothing else is logged by the model.
 So, the user is fully responsible for filling the log signals within the functions called inside the MATLAB function blocks. 
 
-### `ModelsLibrary`
-This is a collection of common models that the user can utilize within the simulation.
-It includes models of the Earth orbit environment (geopotential, atmosphere, magnetic field, ...), models of common equations of motion, models of common sensors, actuators, and control algorithms.
-
-All models are subclasses to the abstract superclass `ModelBase` which is provided in the `Utilities` folder.
-It forces its subclasses to implement the method `execute` which is meant to be called within the MATLAB function blocks of the simulation's main Simulink model.
-Furthermore, the constructor of a model's class is meant to prepare the model's part of the parameter structure that is used in the call to the model's `execute` method.  
-
-The page [Model Usage]({% link content/overview/setup/models.md %}) explains dealing with models in more detail.
-
 ## UserFiles
 As mentioned before, the simulation is structured in a way that should allow the user to avoid editing the contents of the [`Core`](#core) folder including the Simulink model file.
 Instead, the user should implement everything specific to a certain simulation in the `UserFiles` folder.
 This folder is made up of the following subfolders: 
-- Configurations,
-- Models.
+- `Configurations` and
+- `Models`.
 
-### Configurations
-The `Configurations` folder is meant to contain all files needed to set up and perform a simulation.
-These files are meant to be grouped within classes that each describe a single simulation or set of similar simulations and inherit from the abstract superclass `SimulationConfiguration` provided in the [`Utilities`](#utilities) folder of [`Core`](#core).
-This class forces its subclasses to implement two sets of static methods.
+### `Configurations`
+Within SADYCOS, the term _configuration_ is meant to describe all functionalities and parameters needed to set up and run a simulation.
+This folder should contain classes that each represent a single simulation (or set of similar simulations) and inherit from the abstract superclass `SimulationConfiguration` provided in the [`Utilities`](#utilities) folder of [`Core`](#core).
+Such a class encapsulates all the files necessary to implement the desired behavior of the simulation and to configure the parameters of the Simulink model accordingly. 
+The superclass forces its subclasses to implement two sets of static methods.
+
 The methods
 - `configureParameters` and 
 - `configureBuses`
@@ -142,6 +144,6 @@ The user also benefits from using classes when implementing multiple different s
 
 Initially, there is a namespace `ExampleMission` in the `Configurations` folder which contains a class `DefaultConfiguration` that serves as an example for how to structure a configuration class.
 
-### Models
+### `Models`
 While the [`Core`](#core) contains a library of models that the user can utilize within the simulation, this folder can be used by the user to implement custom models that are specific to the user's simulation.
 Like the models in the `ModelsLibrary`, these models should be subclasses of the abstract superclass `ModelBase` provided in the [`Utilities`](#utilities) folder of [`Core`](#core).
