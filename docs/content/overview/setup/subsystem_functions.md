@@ -211,7 +211,7 @@ E.g., the aerodynamic force is transformed into the inertial frame before being 
 
 In step 4, the results of the models are then written to the output structures of the function.
 This particular subsystem function has three outputs: `PlantFeedthrough`, `PlantStatesDerivatives`, and `LogPlantDynamics`.
-The `PlantFeedthrough` structure is used to pass data from the `Plant` subsystem to the `Sensors` subsystem.
+The `PlantFeedthrough` structure is used to pass (improper output) data from the `Plant` subsystem to the `Sensors` subsystem.
 So, it contains data that is in some way relevant for the sensors like the translational and rotational accelerations of the satellite in this example. 
 The `PlantStatesDerivatives` structure contains the derivatives of the states of the `Plant` subsystem.
 Its fields will be passed through an integrator and the result is fed back into this function as the `PlantStates` input.
