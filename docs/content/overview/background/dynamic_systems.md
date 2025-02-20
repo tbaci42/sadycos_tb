@@ -6,7 +6,13 @@ nav_order: 1
 ---
 
 # Modelling of Dynamic Systems
+{: .no_toc }
 This page is intended to give some background knowledge of how dynamic systems are modelled and simulated in SADYCOS.
+
+## Page Contents
+{: .no_toc .text-delta }
+- TOC
+{:toc}
 
 ## Terminology
 The following terms are used throughout this page and are briefly explained here:
@@ -39,11 +45,11 @@ $$ y = h(x,u)$$
 
 ### Proper Output
 - system output $$y$$ does not directly depend on the current input $$u$$
-- a dynamic system's output thus only depends on the current state $$x$$
+- a proper output of a dynamic system thus only depends on the current state $$x$$
 
 $$ y = h(x)$$
 
-- a proper output does not react immediately to changes in the system input but delayed by the system's dynamics 
+- a proper output does not react immediately to changes in the system input but delayed through the system's dynamics 
 
 ### Improper Output
 - system output $$y$$ directly depends on the current input $$u$$
@@ -76,14 +82,14 @@ $$ y = h(x,y).$$
 Oftentimes, Simulink can handle these loops with additional numeric solvers at the cost of increased simulation time.
 
 Occasionally, Simulink wrongly concludes that there is an algebraic loop even though there is none.
-This is the case when $$y$$ is proper, i.e. the function $$h$$ does not actually depend on $$u$$, but $$h$$ is implemented in a single MATLAB function block together with $$f$$.
+This is the case when $$y$$ is actually proper, i.e. the function $$h$$ does not depend on $$u$$, but $$h$$ is implemented in a single MATLAB function block together with $$f$$.
 For those blocks, Simulink does not seem to look into the code itself for finding algebraic loops but rather just relies on the block's output and input ports.
 It sees a block that uses $$u$$ as an input and outputs $$y$$ and cautiously concludes that there might be a direct relation between $$y$$ and $$u$$.
 If such a block is part of a feedback loop, Simulink attempts to solve the (non-existent) algebraic loop numerically.
 
-This issue can be avoided by splitting the calculation of proper and improper outputs into separate blocks.
+This issue can be avoided altogether by splitting the calculation of proper and improper outputs into separate blocks.
 The following picture shows such a model where the improper output $$y_1$$ is still calculated in the same block as the state derivatives $$\dot{x}$$.
-The proper output $$y_2$$, however, is calculated in a separate block that is located behind the integrator and therefore only directly depends on the states $$x$$ and not the input $$u$$.
+The proper output $$y_2$$, however, is calculated in a separate block that is located behind the integrator and therefore Simulink sees that it only directly depends on the states $$x$$ and not the input $$u$$.
 <center>
     <img src="system2.png" alt="Dynamic System with Proper and Improper Outputs in Simulink" width="60%"/>
 </center>
