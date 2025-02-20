@@ -61,25 +61,46 @@ E.g., while MATLAB defines the type `logical` for data that can either be `true`
 Just like structure fields can themselves also be structures, a bus element can also be a bus.
 Unfortunately, this means for a more complex bus that the user has to create a `Simulink.Bus` object for the top-level bus and every nested bus within it.
 The following example shows such a signal hierarchy:
-```
-Top Level Bus
-├── Field A
-├── Field B
-├── Nested Bus 1
-│   ├── Nested Bus 11
-│   │   ├── Field 11A
-│   │   ├── Field 11B
-│   │   └── Nested Bus 111
-│   │       ├── Field 111A
-│   │       └── Field 111B
-│   └── Nested Bus 12
-│       ├── Field 12A
-│       ├── Field 12B
-│       └── Field 12C
-└── Nested Bus 2
-    ├── Field 2A
-    ├── Field 2B
-    └── Field 2C
+```mermaid
+graph LR
+    accTitle: Examplary Bus Hierarchy
+    accDescr: This diagram illustrates an examplary bus hierarchy with a top-level bus and multiple nested buses.
+    tl(["Top Level Bus"])
+    fA["Field A"]
+    fB["Field B"]
+    nb1(["Nested Bus 1"])
+    nb11(["Nested Bus 11"])
+    f11A["Field 11A"]
+    f11B["Field 11B"]
+    nb111(["Nested Bus 111"])
+    f111A["Field 111A"]
+    f111B["Field 111B"]
+    nb12(["Nested Bus 12"])
+    f12A["Field 12A"]
+    f12B["Field 12B"]
+    f12C["Field 12C"]
+    nb2(["Nested Bus 2"])
+    f2A["Field 2A"]
+    f2B["Field 2B"]
+    f2C["Field 2C"]
+
+    tl --> fA
+    tl --> fB
+    tl --> nb1
+    nb1 --> nb11
+    nb11 --> f11A
+    nb11 --> f11B
+    nb11 --> nb111
+    nb111 --> f111A
+    nb111 --> f111B
+    nb1 --> nb12
+    nb12 --> f12A
+    nb12 --> f12B
+    nb12 --> f12C
+    tl --> nb2
+    nb2 --> f2A
+    nb2 --> f2B
+    nb2 --> f2C
 ```
 
 For this bus, the user would have to create six objects in total:
