@@ -12,7 +12,7 @@ This page is intended to give some background knowledge of how dynamic systems a
 The following terms are used throughout this page and are briefly explained here:
 
 ### Simulation
-- determination of how a system behaves over time
+- determination of a system's behavior over time
 - mathematically, this results in the solution of a set of differential/difference equations
 
 ### Static System
@@ -34,6 +34,20 @@ $$ y = h(x,u)$$
     - discrete: states update is described by a difference equation
 
     $$x_k = f(x_{k-1},u_{k-1})$$
+
+- a dynamic system thus consists of the two static functions $$f$$ and $$h$$ and a method to update the states
+
+### Proper Output
+- system output $$y$$ does not directly depend on the current input $$u$$
+- a dynamic system's output thus only depends on the current state $$x$$
+
+$$ y = h(x)$$
+
+- a proper output does not react immediately to changes in the system input but delayed by the system's dynamics 
+
+### Improper Output
+- system output $$y$$ directly depends on the current input $$u$$
+- an improper output reacts immediately to changes in the system input → system has direct feedthrough
 
 ## Simulink Modelling
 Simulink simplifies the simulation of dynamic systems because it already provides implementations for common solvers and numerical integration methods.
