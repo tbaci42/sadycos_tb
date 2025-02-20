@@ -161,7 +161,9 @@ This procedure is subsequently repeated for the remaining top-level buses (not s
 
 At the very end, the method `getBusesInfo` of the `BusesInfoCreator` instance is called which checks whether all necessary top-level and nested bus have been set before outputting a structure called `BusesInfo`.
 This structure contains a field `buses_list` which is the list of bus objects (and their names) that was created with the helper class.
-The entire structure `BusesInfo` must be returned by the `configureBuses` method because it is used in the subsequent step of the configuration class' constructor where it is stored inside of the simulation run's own workspace (see [Simulation Input Configuration]({% link content/overview/setup/simulation_inputs.md %})), avoiding to clutter up the MATLAB workspace.
+The entire structure `BusesInfo` must be returned by the `configureBuses` method because it is used in the subsequent step of the configuration class' constructor where it is stored inside the simulation run's own workspace (see [Simulation Input Configuration]({% link content/overview/setup/simulation_inputs.md %})), avoiding cluttering up the MATLAB workspace.
+
+Similarly to the parameters, running multiple simulations with the same configuration class demands that an _array_ of `BusesInfo` structures instead of a single structure is returned by the `configureBuses` method.
 
 ## Bus Templates
 Apart from the list of bus objects, the `BusesInfo` structure also contains a field `BusTemplates` that has not been mentioned yet.

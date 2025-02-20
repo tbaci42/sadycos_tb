@@ -208,3 +208,4 @@ This method expects two arguments: the name of the subsystem in which the parame
 
 After all these methods are used, the above example calls the method `getParameters` which assembles the parameter structure in the correct format and returns it.
 This structure can subsequently be amended with additional parameters that are not specific to a model before packing it into a cell and returning it.
+If the configuration class is supposed to run multiple simulations, the method `configureParameters` must return a cell array of parameter structures instead of a single cell. 
