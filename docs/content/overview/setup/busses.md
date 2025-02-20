@@ -13,7 +13,7 @@ Since the user can freely define what data to write into the output structures o
 Simulink unfortunately cannot automatically infer the necessary format of a bus from the MATLAB function block which is why the user has to manually provide objects of the MATLAB's class `Simulink.Bus` for every bus signal within the simulink model.
 This page explains how that is done in SADYCOS.
 
-## Table of contents
+## Page contents
 {: .no_toc .text-delta }
 - TOC
 {:toc}
