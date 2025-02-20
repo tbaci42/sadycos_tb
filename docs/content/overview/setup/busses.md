@@ -18,7 +18,6 @@ This page explains how that is done in SADYCOS.
 - TOC
 {:toc}
 
-
 ## Busses List
 The following is a full list of busses used directly in SADYCOS' Simulink model ordered by the subsystem that outputs them:
 - Subsystem `Environment`
@@ -98,56 +97,57 @@ The creation of these bus objects is done in the configuration class' static met
 SADYCOS supports the user in this task by providing the utility class `BussesInfoCreator`.
 The following excerpt from the `DefaultConfiguration` class in the `ExamplesMission` namespace shows how to use this class:
 
-<details closed markdown="block">
-<summary>Code Block: configureBusses.m</summary>
-```matlab
-%% Use helper class
-import BusesInfoCreator.simpleBusElement
-
-...
-
-%% EnvironmentConditions
-
-% Nested Buses
-
-% Time
-elems = simpleBusElement('current_time__mjd', 1, 'double');
-
-busesInfoCreator.setBusByElements('Time', elems);
-
-% Earth Atmosphere
-elems = [simpleBusElement('mass_density__kg_per_m3', 1), ...
-            simpleBusElement('number_density__1_per_m3', 1), ...
-            simpleBusElement('temperature__K', 1)];
-
-busesInfoCreator.setBusByElements('EarthAtmosphere', elems);
-
-% Earth Gravitational Field
-elems = simpleBusElement('gravitational_acceleration_I__m_per_s2', 3);
-
-busesInfoCreator.setBusByElements('EarthGravitationalField', elems);
-
-% Earth Magnetic Field
-elems = simpleBusElement('magnetic_field_I__T', 3);
-
-busesInfoCreator.setBusByElements('EarthMagneticField', elems);
-
-% Earth Rotation
-elems = simpleBusElement('earth_quaternion_EI', 4);
-
-busesInfoCreator.setBusByElements('EarthRotation', elems);
-
-% Top-Level Bus
-
-elems = [simpleBusElement('Time', 1, 'Bus: Time'), ...
-            simpleBusElement('EarthAtmosphere', 1, 'Bus: EarthAtmosphere'), ...
-            simpleBusElement('EarthGravitationalField', 1, 'Bus: EarthGravitationalField'), ...
-            simpleBusElement('EarthMagneticField', 1, 'Bus: EarthMagneticField'), ...
-            simpleBusElement('EarthRotation', 1, 'Bus: EarthRotation')];
-
-busesInfoCreator.setBusByElements('EnvironmentConditions', elems);
-```
-</details>
+{: .code_block }
+> <details closed markdown="block">
+> <summary>configureBusses.m</summary>
+> ```matlab
+> %% Use helper class
+> import BusesInfoCreator.simpleBusElement
+> 
+> ...
+> 
+> %% EnvironmentConditions
+> 
+> % Nested Buses
+> 
+> % Time
+> elems = simpleBusElement('current_time__mjd', 1, 'double');
+> 
+> busesInfoCreator.setBusByElements('Time', elems);
+> 
+> % Earth Atmosphere
+> elems = [simpleBusElement('mass_density__kg_per_m3', 1), ...
+>             simpleBusElement('number_density__1_per_m3', 1), ...
+>             simpleBusElement('temperature__K', 1)];
+> 
+> busesInfoCreator.setBusByElements('EarthAtmosphere', elems);
+> 
+> % Earth Gravitational Field
+> elems = simpleBusElement('gravitational_acceleration_I__m_per_s2', 3);
+> 
+> busesInfoCreator.setBusByElements('EarthGravitationalField', elems);
+> 
+> % Earth Magnetic Field
+> elems = simpleBusElement('magnetic_field_I__T', 3);
+> 
+> busesInfoCreator.setBusByElements('EarthMagneticField', elems);
+> 
+> % Earth Rotation
+> elems = simpleBusElement('earth_quaternion_EI', 4);
+> 
+> busesInfoCreator.setBusByElements('EarthRotation', elems);
+> 
+> % Top-Level Bus
+> 
+> elems = [simpleBusElement('Time', 1, 'Bus: Time'), ...
+>             simpleBusElement('EarthAtmosphere', 1, 'Bus: EarthAtmosphere'), ...
+>             simpleBusElement('EarthGravitationalField', 1, 'Bus: EarthGravitationalField'), ...
+>             simpleBusElement('EarthMagneticField', 1, 'Bus: EarthMagneticField'), ...
+>             simpleBusElement('EarthRotation', 1, 'Bus: EarthRotation')];
+> 
+> busesInfoCreator.setBusByElements('EnvironmentConditions', elems);
+> ```
+> </details>
 
 In this example, the bus `EnvironmentConditions` is created with five fields `Time`, `EarthAtmosphere`, `EarthGravitationalField`, `EarthMagneticField`, and `EarthRotation`.
 Each of these fields is itself a nested bus which corresponds to a `Simulink.Bus` object that has to be created in the same way.
