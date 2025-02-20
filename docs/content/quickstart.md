@@ -49,7 +49,7 @@ Initially you will find a namespace `ExampleMission` containing two configuratio
     o = ExampleMission.DefaultConfiguration;
     o.run;
     ```
-    SADYCOS will display the progress of the individual steps of preparing the simulation model (configuring parameters, busses and simulation inputs and generating interface files) before running the simulation in the background.
+    SADYCOS will display the progress of the individual steps of preparing the simulation model (configuring parameters, buses and simulation inputs and generating interface files) before running the simulation in the background.
     Afterwards, an output to the command line will indicate that the simulation has finished.
 
 ## Inspecting the Results

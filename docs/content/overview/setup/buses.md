@@ -1,15 +1,15 @@
 ---
-title: Busses Configuration
+title: Buses Configuration
 layout: page
 parent: Simulation Setup
 nav_order: 5
 ---
 
-# Busses Configuration
+# Buses Configuration
 {: .no_toc }
 The subsystem functions called in the Simulink model generally output variables of MATLAB's `struct` type.
 The corresponding type of signal that Simulink uses to route the data between subsystems is called _bus_.
-Since the user can freely define what data to write into the output structures of the subsystem functions, the busses can be different for every simulation.
+Since the user can freely define what data to write into the output structures of the subsystem functions, the buses can be different for every simulation.
 Simulink unfortunately cannot automatically infer the necessary format of a bus from the MATLAB function block which is why the user has to manually provide objects of the MATLAB's class `Simulink.Bus` for every bus signal within the simulink model.
 This page explains how that is done in SADYCOS.
 
@@ -18,8 +18,8 @@ This page explains how that is done in SADYCOS.
 - TOC
 {:toc}
 
-## Busses List
-The following is a full list of busses used directly in SADYCOS' Simulink model ordered by the subsystem that outputs them:
+## Buses List
+The following is a full list of buses used directly in SADYCOS' Simulink model ordered by the subsystem that outputs them:
 - Subsystem `Environment`
     - `EnvironmentConditions`
     - `EnvironmentStates`
@@ -92,14 +92,14 @@ For this bus, the user would have to create six objects in total:
 
 each of which must contain the corresponding array of `Simulink.BusElement` objects in its `Elements` property.
 
-## Busses Configuration
-The creation of these bus objects is done in the configuration class' static method `configureBusses` which is called by the constructor of the configuration class right after `configureParameters` has been executed (see [Parameter Configuration]({% link content/overview/setup/parameters.md %})).
-SADYCOS supports the user in this task by providing the utility class `BussesInfoCreator`.
+## Buses Configuration
+The creation of these bus objects is done in the configuration class' static method `configureBuses` which is called by the constructor of the configuration class right after `configureParameters` has been executed (see [Parameter Configuration]({% link content/overview/setup/parameters.md %})).
+SADYCOS supports the user in this task by providing the utility class `BusesInfoCreator`.
 The following excerpt from the `DefaultConfiguration` class in the `ExamplesMission` namespace shows how to use this class:
 
 {: .code_block }
 > <details closed markdown="block">
-> <summary>configureBusses.m</summary>
+> <summary>configureBuses.m</summary>
 > ```matlab
 > %% Use helper class
 > import BusesInfoCreator.simpleBusElement
@@ -153,15 +153,15 @@ In this example, the bus `EnvironmentConditions` is created with five fields `Ti
 Each of these fields is itself a nested bus which corresponds to a `Simulink.Bus` object that has to be created in the same way.
 
 The utility class `BusesInfoCreator` provides a static method `simpleBusElement` that simplifies the creation of `Simulink.BusElement` objects by only requiring the name and dimensions and optionally the data type and complexity of the element.
-After assembling a list of those objects (called `elems` in the above example), the user can call the method `setBusByElements` of the `BussesInfoCreator` instance to add a new `Simulink.Bus` object to the list of busses.
+After assembling a list of those objects (called `elems` in the above example), the user can call the method `setBusByElements` of the `BusesInfoCreator` instance to add a new `Simulink.Bus` object to the list of buses.
 The method checks under the hood whether the same bus has already been created, avoiding duplicates.
 This is done for every nested bus and finally for the top-level bus `EnvironmentConditions`.
 Its fields are the nested buses whose data types must be set to a string of the format `Bus: BusName` where `BusName` is the name of the corresponding nested bus.
 This procedure is subsequently repeated for the remaining top-level buses (not shown in the above excerpt).
 
-At the very end, the method `getBusesInfo` of the `BussesInfoCreator` instance is called which checks whether all necessary top-level and nested bus have been set before outputting a structure called `BusesInfo`.
+At the very end, the method `getBusesInfo` of the `BusesInfoCreator` instance is called which checks whether all necessary top-level and nested bus have been set before outputting a structure called `BusesInfo`.
 This structure contains a field `buses_list` which is the list of bus objects (and their names) that was created with the helper class.
-The entire structure `BusesInfo` must be returned by the `configureBusses` method because it is used in the subsequent step of the configuration class' constructor where it is stored inside of the simulation run's own workspace (see [Simulation Input Configuration]({% link content/overview/setup/simulation_inputs.md %})), avoiding to clutter up the MATLAB workspace.
+The entire structure `BusesInfo` must be returned by the `configureBuses` method because it is used in the subsequent step of the configuration class' constructor where it is stored inside of the simulation run's own workspace (see [Simulation Input Configuration]({% link content/overview/setup/simulation_inputs.md %})), avoiding to clutter up the MATLAB workspace.
 
 ## Bus Templates
 Apart from the list of bus objects, the `BusesInfo` structure also contains a field `BusTemplates` that has not been mentioned yet.

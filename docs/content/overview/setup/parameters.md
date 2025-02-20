@@ -19,7 +19,7 @@ A simulation in SADYCOS can be customized by the user in two ways:
 ## Parameter Usage
 After creating an object of a configuration class, it will have a property called `parameters_cells` which is a cell array of structures which hold parameter values for use during the setup and run of a simulation.
 The values of these cell array elements must be set by the user through the output of the configuration class' static method `configureParameters` which is automatically called by the configuration class' constructor.
-Afterwards, the `parameter_cells` property is used to configure bus objects explained in the page [Busses Configuration]({% link content/overview/setup/busses.md %}) and to create `Simulink.SimulationInput` objects explained in [Configuring Simulation Inputs]({% link content/overview/setup/simulation_inputs.md %}).
+Afterwards, the `parameter_cells` property is used to configure bus objects explained in the page [Buses Configuration]({% link content/overview/setup/buses.md %}) and to create `Simulink.SimulationInput` objects explained in [Configuring Simulation Inputs]({% link content/overview/setup/simulation_inputs.md %}).
 
 Each element of the cell array will result in an individual `Simulink.SimulationInput` object.
 The `run` method of the configuration class will perform a simulation for every one of these objects giving the user the ability to run multiple similar simulations with differing parameters with a single function call.
