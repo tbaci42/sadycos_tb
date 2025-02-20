@@ -9,25 +9,26 @@ nav_order: 4
 {: .no_toc }
 A simulation in SADYCOS can be customized by the user in two ways:
 1. by implementing the desired system behavior in the subsystem functions as explained in the page [Subsystem Functions]({% link content/overview/setup/subsystem_functions.md %}) and
-2. by setting constant parameters of the simulation which is the topic of this page.
+2. by setting constant parameters of the simulation.
+
+The latter is the topic of this page.
 
 ## Page Contents
 {: .no_toc .text-delta }
 - TOC
 {:toc}
 
-## Parameter Usage
-After creating an object of a configuration class, it will have a property called `parameters_cells` which is a cell array of structures which hold parameter values for use during the setup and run of a simulation.
+## Process
+After creating an object of a configuration class, it will have a property called `parameters_cells`, which is a cell array of structures that hold parameter values for use during the setup and run of a simulation.
 The values of these cell array elements must be set by the user through the output of the configuration class' static method `configureParameters` which is automatically called by the configuration class' constructor.
-Afterwards, the `parameter_cells` property is used to configure bus objects explained in the page [Buses Configuration]({% link content/overview/setup/buses.md %}) and to create `Simulink.SimulationInput` objects explained in [Configuring Simulation Inputs]({% link content/overview/setup/simulation_inputs.md %}).
+Afterwards, the `parameter_cells` property is used to configure bus objects explained in the page [Buses Configuration]({% link content/overview/setup/buses.md %}), and to create `Simulink.SimulationInput` objects, explained in [Configuring Simulation Inputs]({% link content/overview/setup/simulation_inputs.md %}).
 
 Each element of the cell array will result in an individual `Simulink.SimulationInput` object.
 The `run` method of the configuration class will perform a simulation for every one of these objects giving the user the ability to run multiple similar simulations with differing parameters with a single function call.
 
-The parameter structures holds general settings for the Simulink model itself (like the simulation duration) and constant parameters that models can use during the simulation.
-
-## Configuration
-A parameter structure must adhere to a certain format for the Simulink model to find the appropriate parameters in the right places.
+## Cell Array of Parameter Structures
+A parameter structure holds general settings for the Simulink model itself (like the simulation duration) and constant parameters that models can use during the simulation.
+It must adhere to a certain format for the Simulink model to find the appropriate parameters in the right places.
 SADYCOS provides the class `ParameterCreator` in `Core/Utilities` to help the user create these structures.
 A good example of how to use this class can be found in the `configureParameters` method of the `DefaultConfiguration` class in the `ExamplesMission` namespace.
 Its code can be seen in full by opening the following code block:

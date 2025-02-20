@@ -18,8 +18,8 @@ This page explains how that is done in SADYCOS.
 - TOC
 {:toc}
 
-## Buses List
-The following is a full list of buses used directly in SADYCOS' Simulink model ordered by the subsystem that outputs them:
+## Top-Level Buses
+The following is a list of buses used directly in SADYCOS' Simulink model ordered by the subsystem that outputs them:
 - Subsystem `Environment`
     - `EnvironmentConditions`
     - `EnvironmentStates`
@@ -113,7 +113,11 @@ For this bus, the user would have to create six objects in total:
 
 each of which must contain the corresponding array of `Simulink.BusElement` objects in its `Elements` property.
 
-## Buses Configuration
+## Process
+Right after the constructor of the configuration class has finished executing the static method `configureParameters`, it calls the method `configureBuses` with the cell array of parameters as an input argument.
+This method must be implemented by the user and output a structure with a list of `Simulink.Bus` objects that are used in the Simulink model and template structures for each top-level bus.
+
+## List of Buses
 The creation of these bus objects is done in the configuration class' static method `configureBuses` which is called by the constructor of the configuration class right after `configureParameters` has been executed (see [Parameter Configuration]({% link content/overview/setup/parameters.md %})).
 SADYCOS supports the user in this task by providing the utility class `BusesInfoCreator`.
 The following excerpt from the `DefaultConfiguration` class in the `ExamplesMission` namespace shows how to use this class:
@@ -187,7 +191,7 @@ The entire structure `BusesInfo` must be returned by the `configureBuses` method
 Similarly to the parameters, running multiple simulations with the same configuration class demands that an _array_ of `BusesInfo` structures instead of a single structure is returned by the `configureBuses` method.
 
 ## Bus Templates
-Apart from the list of bus objects, the `BusesInfo` structure also contains a field `BusTemplates` that has not been mentioned yet.
+Apart from the list of bus objects, the `BusesInfo` structure also contains a field `BusTemplates` whose importance has not been explained yet.
 It is a structure that holds default values of all top-level buses.
 Its necessity arises from a quirk in the interplay between Simulink and MATLAB functions because the order in which the fields of a structure were created matters.
 
