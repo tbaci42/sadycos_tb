@@ -17,7 +17,7 @@ Each of these subsystems contains one MATLAB function block (in case of the `Pla
 {:toc}
 
 ## Function Call Hierarchy
-The MATLAB function block only performs some boilerplate tasks like preparing inputs and outputs before calling the actual subsystem function.
+The MATLAB function block only performs some boilerplate tasks like preparing inputs and outputs (see [Busses Configuration]({% link content/overview/setup/busses.md %})) before calling the actual subsystem function.
 For example, the content of the MATLAB function block in the `Environment` subsystem is as follows:
 
 ```matlab
@@ -197,7 +197,13 @@ end
 ```
 </details>
 
-It can be seen that this function is structured in the following way:
+The first thing to notice is that the function's outputs are also its first inputs.
+This is done to provide the subsystem function with structures in a correct format.
+Their fields initially only hold dummy values that need to be overwritten by the user's code. 
+This is true for all subsystems.
+The necessity of a _correct_ format is described in the page [Busses Configuration]({% link content/overview/setup/busses.md %}).
+
+Apart from that, it can be seen that this particular function is structured in the following way:
 1. Extract inputs
 2. Calculate Forces and Torques
 3. Calculate States Derivatives
