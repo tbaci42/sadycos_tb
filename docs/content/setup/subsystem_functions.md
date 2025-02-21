@@ -17,7 +17,7 @@ Each of these subsystems contains one MATLAB function block (in case of the `Pla
 {:toc}
 
 ## Function Call Hierarchy
-The MATLAB function block only performs some boilerplate tasks like preparing inputs and outputs (see [Buses Configuration]({% link content/overview/setup/buses.md %})) before calling the actual subsystem function.
+The MATLAB function block only performs some boilerplate tasks like preparing inputs and outputs (see [Buses Configuration]({% link content/setup/buses.md %})) before calling the actual subsystem function.
 For example, the content of the MATLAB function block in the `Environment` subsystem is shown in the following expandable code block:
 
 {: .code_block }
@@ -87,7 +87,7 @@ The automatically generated functions call the static methods of the configurati
 ## Implementation
 The user should never have to interact with the automatically generated functions directly.
 You are only responsible for creating the corresponding static methods within the configuration classes.
-This is where the actual behavior of the system (i.e. the functions $$f$$ and $$h$$, see [Modelling Dynamic Systems]({% link content/overview/background/dynamic_systems.md %})) is defined.
+This is where the actual behavior of the system (i.e. the functions $$f$$ and $$h$$, see [Modelling Dynamic Systems]({% link content/background/dynamic_systems.md %})) is defined.
 A good example is the method `plantDynamics` of the `DefaultConfiguration` class in the `ExampleMission` namespace.
 Its code can be seen in full by expanding the following code block:
 
@@ -207,7 +207,7 @@ The first thing to notice is that the function's outputs are also its first inpu
 This is done to provide the subsystem function with structures in a correct format.
 Their fields initially only hold dummy values that need to be overwritten by the user's code. 
 This is true for all subsystems.
-The necessity of a _correct_ format is described in the page [Buses Configuration]({% link content/overview/setup/buses.md %}).
+The necessity of a _correct_ format is described in the page [Buses Configuration]({% link content/setup/buses.md %}).
 
 Apart from that, it can be seen that this particular function is structured in the following way:
 1. Extract inputs

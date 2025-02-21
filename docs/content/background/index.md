@@ -1,8 +1,7 @@
 ---
 title: Background Information
 layout: page
-parent: Overview
-nav_order: 3
+nav_order: 6
 ---
 
 # Background Information

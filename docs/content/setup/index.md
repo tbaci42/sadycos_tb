@@ -1,8 +1,7 @@
 ---
 title: Simulation Setup
 layout: page
-parent: Overview
-nav_order: 2
+nav_order: 4
 ---
 
 # Simulation Setup

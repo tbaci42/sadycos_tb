@@ -7,7 +7,7 @@ nav_order: 6
 
 # Simulation Input Configuration
 {: .no_toc }
-The creation of `Simulink.SimulationInput` objects is the whole purpose of the [Parameter]({% link content/overview/setup/parameters.md %}) and [Buses Configuration]({% link content/overview/setup/buses.md %}).
+The creation of `Simulink.SimulationInput` objects is the whole purpose of the [Parameter]({% link content/setup/parameters.md %}) and [Buses Configuration]({% link content/setup/buses.md %}).
 These objects encapsulate all information necessary to execute a simulation, including the general settings of the Simulink model, the parameters used in the subsystem functions, the `Simulink.Bus` objects, and the `BusesTemplates` structure.
 This page gives a quick overview of how these objects are created in SADYCOS.  
 

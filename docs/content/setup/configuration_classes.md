@@ -21,24 +21,24 @@ This class already provides the standard interface methods that users can utiliz
 ## Definition
 ### Subsystem Functions
 The abstract superclass `SimulinkConfiguration` forces its subclasses to implement the functions that are called from the MATLAB function blocks of the Simulink model as static methods.
-This is explained in more detail on the page [Subsystem Functions]({% link content/overview/setup/subsystem_functions.md %}).
+This is explained in more detail on the page [Subsystem Functions]({% link content/setup/subsystem_functions.md %}).
 
 ### Parameter Configuration
 Before the simulation can be started, the general properties of the Simulink model as well as parameters of the models used within the subsystem functions must be configured by the user.
-For this, the superclass forces subclasses to implement the static method `configureParameters` which is supposed to output a cell array of parameter structures that are used during the preparation and execution of the simulation. The page [Parameter Configuration]({% link content/overview/setup/parameters.md %}) explains this in more detail.
+For this, the superclass forces subclasses to implement the static method `configureParameters` which is supposed to output a cell array of parameter structures that are used during the preparation and execution of the simulation. The page [Parameter Configuration]({% link content/setup/parameters.md %}) explains this in more detail.
 
 ### Buses Configuration
 Lastly, the superclass enforces implementation of the static method `configureBuses`.
 The subsystem functions will generally output data in the form of structures.
 Simulink is not able to infer the bus objects from these structures during model preparation automatically.
 Thus, the user must specify a bus object for every signal of the Simulink model.
-The page [Buses Configuration]({% link content/overview/setup/buses.md %}) explains this in more detail.
+The page [Buses Configuration]({% link content/setup/buses.md %}) explains this in more detail.
 
 ### Simulation Input Configuration
 The outputs of the `configureParameters` and `configureBuses` methods are used within another static method `configureSimulationInputs` to create objects of the MATLAB's `Simulink.SimulationInput` class.
 Those objects contain all necessary information to run a simulation.
 The method `configureSimulationInputs` already has a default implementation in the superclass but can be overridden by the user if necessary.
-The details are explained on the page [Simulation Input Configuration]({% link content/overview/setup/simulation_inputs.md %}).
+The details are explained on the page [Simulation Input Configuration]({% link content/setup/simulation_inputs.md %}).
 
 ### Additional Methods
 Besides these mandatory methods, the user can implement additional ones in the configuration classes.

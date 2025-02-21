@@ -118,7 +118,7 @@ Right after the constructor of the configuration class has finished executing th
 This method must be implemented by the user and output a structure with a list of `Simulink.Bus` objects that are used in the Simulink model and template structures for each top-level bus.
 
 ## List of Buses
-The creation of these bus objects is done in the configuration class' static method `configureBuses` which is called by the constructor of the configuration class right after `configureParameters` has been executed (see [Parameter Configuration]({% link content/overview/setup/parameters.md %})).
+The creation of these bus objects is done in the configuration class' static method `configureBuses` which is called by the constructor of the configuration class right after `configureParameters` has been executed (see [Parameter Configuration]({% link content/setup/parameters.md %})).
 SADYCOS supports the user in this task by providing the utility class `BusesInfoCreator`.
 The following excerpt from the `DefaultConfiguration` class in the `ExamplesMission` namespace shows how to use this class:
 
@@ -186,7 +186,7 @@ This procedure is subsequently repeated for the remaining top-level buses (not s
 
 At the very end, the method `getBusesInfo` of the `BusesInfoCreator` instance is called which checks whether all necessary top-level and nested bus have been set before outputting a structure called `BusesInfo`.
 This structure contains a field `buses_list` which is the list of bus objects (and their names) that was created with the helper class.
-The entire structure `BusesInfo` must be returned by the `configureBuses` method because it is used in the subsequent step of the configuration class' constructor where it is stored inside the simulation run's own workspace (see [Simulation Input Configuration]({% link content/overview/setup/simulation_inputs.md %})), avoiding cluttering up the MATLAB workspace.
+The entire structure `BusesInfo` must be returned by the `configureBuses` method because it is used in the subsequent step of the configuration class' constructor where it is stored inside the simulation run's own workspace (see [Simulation Input Configuration]({% link content/setup/simulation_inputs.md %})), avoiding cluttering up the MATLAB workspace.
 
 Similarly to the parameters, running multiple simulations with the same configuration class demands that an _array_ of `BusesInfo` structures instead of a single structure is returned by the `configureBuses` method.
 
