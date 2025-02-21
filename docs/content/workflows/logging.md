@@ -1,8 +1,8 @@
 ---
 title: Log Data
 layout: page
-parent: Workflow
-nav_order: 2
+parent: Workflows
+nav_order: 3
 ---
 
 # Log Data
