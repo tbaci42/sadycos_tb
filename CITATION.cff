@@ -25,6 +25,7 @@ authors:
     orcid: 'https://orcid.org/0009-0001-8967-5279'
   - given-names: Paul Jannik
     family-names: Haufe
+    orcid: 'https://orcid.org/0009-0008-4873-0973'
 identifiers:
   - type: doi
     value: 10.5281/zenodo.14918034
