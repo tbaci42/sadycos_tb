@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/930946194.svg)](https://doi.org/10.5281/zenodo.14918034)
+
 # SADYCOS
 SADYCOS is a simulation environment for satellite dynamics and control algorithms implemented in MATLAB Simulink.
 It features a structure that allows for a highly customizable creation and execution of satellite simulations.
