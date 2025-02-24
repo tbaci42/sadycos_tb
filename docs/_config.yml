@@ -16,6 +16,6 @@ math: katex
 mermaid:
   version: "9.1.3"
 callouts:
-  code_block:
-    title: "Code Block"
+  exp_code_block:
+    title: "Expandable Code Block"
     color: purple

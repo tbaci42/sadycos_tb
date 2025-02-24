@@ -33,7 +33,7 @@ SADYCOS provides the class `ParameterCreator` in `Core/Utilities` to help the us
 A good example of how to use this class can be found in the `configureParameters` method of the `DefaultConfiguration` class in the `ExamplesMission` namespace.
 Its code can be seen in full by opening the following code block:
 
-{: .code_block }
+{: .exp_code_block }
 > <details closed markdown="block">
 > <summary>configureParameters.m</summary>
 > ```matlab

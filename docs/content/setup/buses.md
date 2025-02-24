@@ -122,7 +122,7 @@ The creation of these bus objects is done in the configuration class' static met
 SADYCOS supports the user in this task by providing the utility class `BusesInfoCreator`.
 The following excerpt from the `DefaultConfiguration` class in the `ExamplesMission` namespace shows how to use this class:
 
-{: .code_block }
+{: .exp_code_block }
 > <details closed markdown="block">
 > <summary>configureBuses.m</summary>
 > ```matlab

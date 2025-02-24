@@ -28,7 +28,7 @@ Configuration classes must inherit from the abstract superclass `SimulationConfi
 The following expandable code block shows the full code of the class definition file.
 The content is explained in the following sections.
 
-{: .code_block }
+{: .exp_code_block }
 > <details closed markdown="block">
 > <summary>MyNewConfiguration.m</summary>
 > ```matlab
@@ -143,7 +143,7 @@ The actual implementation is done in individual files within the class folder.
 For that, create a new file for each method with the same name as the method, copy the method signature into the file, and implement the desired behavior of the subsystem function.
 E.g., for the `environment` method, create a file `environment.m` with the following content:
 
-{: .code_block }
+{: .exp_code_block }
 > <details closed markdown="block">
 > <summary>environment.m</summary>
 > ```matlab

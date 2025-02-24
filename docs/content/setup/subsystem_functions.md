@@ -20,7 +20,7 @@ Each of these subsystems contains one MATLAB function block (in case of the `Pla
 The MATLAB function block only performs some boilerplate tasks like preparing inputs and outputs (see [Buses Configuration]({% link content/setup/buses.md %})) before calling the actual subsystem function.
 For example, the content of the MATLAB function block in the `Environment` subsystem is shown in the following expandable code block:
 
-{: .code_block }
+{: .exp_code_block }
 > <details closed markdown="block">
 > <summary>configureParameters.m</summary>
 > ```matlab
@@ -91,7 +91,7 @@ This is where the actual behavior of the system (i.e. the functions $$f$$ and $$
 A good example is the method `plantDynamics` of the `DefaultConfiguration` class in the `ExampleMission` namespace.
 Its code can be seen in full by expanding the following code block:
 
-{: .code_block }
+{: .exp_code_block }
 > <details closed markdown="block">
 > <summary>plantsDynamics.m</summary>
 > ```matlab
