@@ -24,7 +24,7 @@ For new classes that implement all the methods themselves, it is recommended to 
 For that, create a new directory with a name of the format `@MyNewConfiguration`, where `MyNewConfiguration` can be replaced with the name of your configuration class.
 Inside this directory, create the class definition file with the same name (omitting the `@` sign this time) `MyNewConfiguration.m`.
 
-Configuration classes must inherit from the abstract superclass `SimulationConfiguration` which must be specified in the first line of the class definition file.
+Configuration classes must inherit from the abstract superclass `SimulationConfiguration` which needs to be specified in the first line of the class definition file.
 The following expandable code block shows the full code of the class definition file.
 The content is explained in the following sections.
 
@@ -166,8 +166,9 @@ E.g., for the `environment` method, create a file `environment.m` with the follo
 
 For the actual implementation, you can make use of the models library provided in the `Core` directory.
 Familiarize yourself with a model's implementation and call the static method `execute` inside the subsystem function.
+The page [Subsystem Functions]({% link content/setup/subsystem_functions.md %}) provides a detailed explanation.
 
-Instead, you can also use custom functionality by either using your own models that you added to the `UserFiles/Models` directory according to the description in [Adding New Models]({% link content/workflows/adding_models.md %}) or by explicitly coding custom functionality inside the subsystem function.
+Instead of relying on pre-defined models, you can also use custom functionality by either using your own models that you added to the `UserFiles/Models` directory according to the description in [Adding New Models]({% link content/workflows/adding_models.md %}) or by explicitly coding custom functionality inside the subsystem function.
 
 ## Implement Configuration Methods
 ### `configureParameters`
@@ -180,7 +181,7 @@ You are advised to use the utility class `ParameterCreator` provided in `Core/Ut
 See the page [Parameter Configuration]({% link content/setup/parameters.md %}) for a detailed explanation.
 
 ### `configureBuses`
-The static method `configureBuses` must be used to define the bus objects that are used to specify the format of the bus signals used in the Simulink model.
+The static method `configureBuses` must be implemented to define the bus objects that are used to specify the format of the bus signals in the Simulink model.
 Its signature is also shown the class definition file above.
 Create a new file `configureBuses.m` within the class folder and implement the method.
 You are advised to use the utility class `BusesInfoCreator` provided in `Core/Utilities` to aid in creating a correctly formatted bus structure.
