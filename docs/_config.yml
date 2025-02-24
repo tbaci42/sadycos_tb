@@ -1,0 +1,21 @@
+title: SADYCOS Documentation
+description: Documentation for the SADYCOS project
+theme: just-the-docs
+
+url: https://sadycos.github.io/sadycos
+logo: "logo.png"
+
+aux_links:
+  SADYCOS on Github: https://github.com/SADYCOS/sadycos/
+
+color_scheme: dark
+
+back_to_top: true
+back_to_top_text: "↑ Back to top ↑"
+math: katex
+mermaid:
+  version: "9.1.3"
+callouts:
+  exp_code_block:
+    title: "Expandable Code Block"
+    color: purple
