@@ -1,4 +1,5 @@
 [![DOI](https://zenodo.org/badge/930946194.svg)](https://doi.org/10.5281/zenodo.14918034)
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 # SADYCOS
 SADYCOS is a simulation environment for satellite dynamics and control algorithms implemented in MATLAB Simulink.
@@ -13,3 +14,6 @@ There, you will find a [Quickstart Guide](https://sadycos.github.io/sadycos/cont
 # Development
 SADYCOS is developed by the Institute of Flight Mechanics and Controls within the Faculty of Aerospace Engineering and Geodesy at the University of Stuttgart.
 For more interesting projects, visit the institute's [Github organization page](https://github.com/ifrunistuttgart) and [website](https://www.ifr.uni-stuttgart.de/en/).
+
+# Acknowledgements
+This work is funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) – Project-ID 516238647 – SFB 1667 (ATLAS - Advancing Technologies for Low-Altitude Satellites)
