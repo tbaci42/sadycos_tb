@@ -100,7 +100,7 @@ Its code can be seen in full by opening the following code block:
 > % Environment Models
 > 
 > % Common
-> mjd0 = mjuliandate('17-July-2024 12:00:00','dd-mmm-yyyy HH:MM:SS');
+> mjd0 = smu.time.modifiedJulianDateFromCalDat(2025, 02, 25.5);
 > 
 > % Time
 > parameter_creator.addModel("Environment", ModifiedJulianDate(mjd0))
