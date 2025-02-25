@@ -3,29 +3,45 @@
 
 cff-version: 1.2.0
 title: SADYCOS
-message: 'If you use this software, please cite it as below.'
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
 type: software
 authors:
-  - name: >-
-      Institute of Flight Mechanics and Controls, University
-      of Stuttgart
-    address: Pfaffenwaldring 27
-    city: Stuttgart
-    country: DE
-    post-code: '70565'
-    alias: iFR
-    website: 'https://www.ifr.uni-stuttgart.de/en/'
   - given-names: Friedrich
     family-names: Tuttas
     orcid: 'https://orcid.org/0000-0002-2950-1517'
     email: f.tuttas@mail.de
+    affiliation: >-
+      Institute of Flight Mechanics and Controls (iFR),
+      University of Stuttgart
   - given-names: Fabian
     family-names: Geyer
     email: fbn.geyer@gmail.com
     orcid: 'https://orcid.org/0009-0001-8967-5279'
+    affiliation: >-
+      Institute of Flight Mechanics and Controls (iFR),
+      University of Stuttgart
   - given-names: Paul Jannik
     family-names: Haufe
     orcid: 'https://orcid.org/0009-0008-4873-0973'
+    affiliation: >-
+      Institute of Flight Mechanics and Controls (iFR),
+      University of Stuttgart
+  - given-names: Torbjørn
+    family-names: Cunis
+    email: torbjoern.cunis@ifr.uni-stuttgart.de
+    affiliation: >-
+      Institute of Flight Mechanics and Controls (iFR),
+      University of Stuttgart
+    orcid: 'https://orcid.org/0000-0003-1672-4321'
+  - given-names: Walter
+    family-names: Fichter
+    email: fichter@ifr.uni-stuttgart.de
+    affiliation: >-
+      Institute of Flight Mechanics and Controls (iFR),
+      University of Stuttgart
+    orcid: 'https://orcid.org/0000-0002-3688-3250'
 identifiers:
   - type: doi
     value: 10.5281/zenodo.14918034
