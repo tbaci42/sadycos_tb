@@ -14,14 +14,23 @@ This guide will help you set up SADYCOS on your machine, run a simple simulation
 {:toc}
 
 ## Prerequisites
+To effectively work with SADYCOS, you need the following software installed on your machine:
 - Git
-- MATLAB R2024a or newer with Simulink
+- MATLAB R2024a or newer with
+    - Simulink
+    - a supported compiler for the inclusion of external c code
+        - e.g. [MinGW](https://de.mathworks.com/matlabcentral/fileexchange/52848-matlab-support-for-mingw-w64-c-c-fortran-compiler) on Windows machines
+        - see [MATLAB and Simulink Requirements](https://de.mathworks.com/support/requirements/supported-compilers.html) for more information
+    - (not needed for this tutorial) further toolboxes for some models or extended functionality:
+        - Aerospace Toolbox
+        - Mapping Toolbox
+        - Parallel Computing Toolbox
 
 Older versions of MATLAB might work, but are not tested.
 
 ## Installation
 First, you need to clone the [Github Repository](https://github.com/SADYCOS/sadycos).
-Since the repository uses submodules, you cannot simply download the files as a zip archive but need to properly clone the repository.
+Since the repository uses submodules, you cannot simply download the files as a zip archive but need to properly clone it.
 If you plan on synchronizing your clone of SADYCOS with Github, you should first [fork the repository](https://github.com/SADYCOS/sadycos/fork) and then clone your own fork to your machine.
 Otherwise you can clone the repository directly with the following command:
 ```bash
