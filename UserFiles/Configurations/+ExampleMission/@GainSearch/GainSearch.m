@@ -49,8 +49,8 @@ classdef GainSearch < ExampleMission.DefaultConfiguration
             kd = kp;
             for index = 1:num_simulations
                 error_quaternion = obj.simulation_outputs(index).logsout{6}.Values.error_quaternion_RB;
-                axang = quat2axang(error_quaternion.Data);
-                settling_times_index = find(rad2deg(axang(:,end)) > 1, 1, "last");
+                [~, angles] = smu.unitQuat.rot.toAxisAngle(error_quaternion.Data');
+                settling_times_index = find(abs(rad2deg(angles)) > 1, 1, "last");
                 settling_times(index) = error_quaternion.Time(settling_times_index);
 
                 kp(index) = obj.parameters_cells{index}.GncAlgorithms.QuaternionFeedbackControl.Kp;
